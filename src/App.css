@@ -47,7 +47,7 @@ body {
   flex-grow: 1;
 }
 .heading {
-  margin-top: 8px;
+  margin-top: 2rem;
 }
 
 @media (max-width: 990px) {

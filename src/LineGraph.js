@@ -67,7 +67,7 @@ function LineGraph({ casesType, ...props }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      await fetch("https://disease.sh/v3/covid-19/historical/all?lastdays=120")
+      await fetch("https://disease.sh/v3/covid-19/historical/all")
         .then((response) => {
           return response.json();
         })
@@ -84,12 +84,14 @@ function LineGraph({ casesType, ...props }) {
     <div className={props.className}>
       {data?.length > 0 && (
         <Line
+          height={200}
           data={{
             datasets: [
               {
                 backgroundColor: "rgba(204, 16, 52, 0.5)",
                 borderColor: "#CC1034",
                 data: data,
+                borderWidth: 2.5,
               },
             ],
           }}
