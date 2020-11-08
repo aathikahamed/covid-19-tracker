@@ -16,3 +16,9 @@
 .table tr:nth-of-type(odd) {
   background-color: #f3f2f8;
 }
+
+@media (max-width: 350px) {
+  .table {
+    overflow: auto;
+  }
+}

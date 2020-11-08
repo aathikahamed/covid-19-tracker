@@ -30,14 +30,18 @@ export const showDataOnMap = (data, casesType = "cases") =>
       color={casesTypeColors[casesType].hex}
       fillColor={casesTypeColors[casesType].hex}
       radius={
-        Math.sqrt(country[casesType]) * casesTypeColors[casesType].multiplier
+        Math.sqrt(country[casesType]) *
+        (casesTypeColors[casesType].multiplier - 300)
       }
     >
       <Popup>
         <div className="info-container">
           <div
             className="info-flag"
-            style={{ backgroundImage: `url(${country.countryInfo.flag})` }}
+            style={{
+              backgroundImage: `url(${country.countryInfo.flag})`,
+              backgroundPosition: "center",
+            }}
           ></div>
           <div className="info-country">{country.country}</div>
           <div className="info-cases">

@@ -28,7 +28,6 @@ body {
   padding: 20px;
 }
 .app__header > h1 {
-  color: #fc3c3c;
   font-size: 2rem;
 }
 
@@ -53,5 +52,31 @@ body {
 @media (max-width: 990px) {
   .app {
     flex-direction: column;
+  }
+  .app__right {
+    margin-top: 1rem;
+  }
+}
+@media (max-width: 350px) {
+  .app__header > h1 {
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .app__stats {
+    flex-direction: column;
+  }
+  .app__stats * {
+    text-align: center;
+  }
+  .MuiCard-root {
+    margin: 10px;
+  }
+  .app__header {
+    flex-direction: column;
+  }
+  .app__header > h1 {
+    margin-bottom: 1rem;
   }
 }
