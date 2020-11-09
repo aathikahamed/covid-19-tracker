@@ -13,7 +13,30 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
 
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-analytics.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      var firebaseConfig = {
+        apiKey: "AIzaSyAHDDisSLTn69xriB9Rbrt_rBuSfPPHflM",
+        authDomain: "aathik-covid-tracker.firebaseapp.com",
+        databaseURL: "https://aathik-covid-tracker.firebaseio.com",
+        projectId: "aathik-covid-tracker",
+        storageBucket: "aathik-covid-tracker.appspot.com",
+        messagingSenderId: "100244378656",
+        appId: "1:100244378656:web:1fe01045dbdc71c6579845",
+        measurementId: "G-0RJTJ6RQQM",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", function () {
