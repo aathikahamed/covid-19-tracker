@@ -1,7 +1,9 @@
 * {
   margin: 0;
 }
-
+.alanBtn-root {
+  z-index: 1000 !important;
+}
 body {
   background-color: #f5f6fa;
 }

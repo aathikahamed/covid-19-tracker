@@ -13,6 +13,7 @@ import Table from "./Table";
 import { sortData, prettyPrintStat } from "./util";
 import LineGraph from "./LineGraph";
 import "leaflet/dist/leaflet.css";
+import alanBtn from "@alan-ai/alan-sdk-web";
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -30,6 +31,13 @@ function App() {
       .then((data) => {
         setCountryInfo(data);
       });
+  }, []);
+
+  useEffect(() => {
+    alanBtn({
+      key:
+        "fc0b9fc7a78dc8355d7d8c64f238b2882e956eca572e1d8b807a3e2338fdd0dc/stage",
+    });
   }, []);
 
   const onCountryChange = (event) => {
