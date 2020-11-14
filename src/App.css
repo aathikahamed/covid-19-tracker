@@ -7,7 +7,12 @@
 body {
   background-color: #f5f6fa;
 }
-
+.infoBox__title {
+  font-weight: 550 !important;
+}
+.MuiTypography-colorTextSecondary {
+  color: rgb(0 0 0 / 66%) !important;
+}
 .app__header {
   display: flex;
   align-items: center;
@@ -22,6 +27,21 @@ body {
 
 .app__left {
   flex: 0.8;
+}
+
+@media (min-width: 1200px) {
+  .app__left {
+    flex: 0.55;
+  }
+  .app__right {
+    flex: 0.25;
+  }
+  .app__right .muiCardContent-root {
+    flex-grow: 1;
+  }
+  .app__graph {
+    flex-grow: 1;
+  }
 }
 
 .app {
