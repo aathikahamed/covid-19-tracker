@@ -14,6 +14,8 @@ import { sortData, prettyPrintStat } from "./util";
 import LineGraph from "./LineGraph";
 import "leaflet/dist/leaflet.css";
 import alanBtn from "@alan-ai/alan-sdk-web";
+import firebase from "firebase/app";
+import "firebase/analytics";
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -38,6 +40,21 @@ function App() {
       key:
         "fc0b9fc7a78dc8355d7d8c64f238b2882e956eca572e1d8b807a3e2338fdd0dc/stage",
     });
+  }, []);
+
+  useEffect(() => {
+    const firebaseConfig = {
+      apiKey: "AIzaSyAHDDisSLTn69xriB9Rbrt_rBuSfPPHflM",
+      authDomain: "aathik-covid-tracker.firebaseapp.com",
+      databaseURL: "https://aathik-covid-tracker.firebaseio.com",
+      projectId: "aathik-covid-tracker",
+      storageBucket: "aathik-covid-tracker.appspot.com",
+      messagingSenderId: "100244378656",
+      appId: "1:100244378656:web:1fe01045dbdc71c6579845",
+      measurementId: "G-0RJTJ6RQQM",
+    };
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
   }, []);
 
   const onCountryChange = (event) => {
@@ -130,7 +147,7 @@ function App() {
       </div>
       <Card className="app__right">
         <CardContent>
-          <h3>Live Cases by Country</h3>
+          <h3>Total Cases by Country</h3>
           <Table countries={tableData} />
           <h3 className="heading">Worldwide Covid-19 Cases</h3>
           <LineGraph className="app__graph" casesType={casesType} />
