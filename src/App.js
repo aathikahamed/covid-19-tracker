@@ -105,8 +105,10 @@ function App() {
             >
               <MenuItem value="worldwide">Worldwide</MenuItem>
 
-              {countries.map((country) => (
-                <MenuItem value={country.value}>{country.name}</MenuItem>
+              {countries.map((country, index) => (
+                <MenuItem key={index} value={country.value}>
+                  {country.name}
+                </MenuItem>
               ))}
             </Select>
           </FormControl>
