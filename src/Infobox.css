@@ -6,7 +6,11 @@
 .infoBox:not(:last-child) {
   margin-right: 15px;
 }
-
+@media (max-width: 600px) {
+  .infoBox:not(:last-child) {
+    margin-right: 0;
+  }
+}
 .infoBox--selected {
   border-top: 10px solid greenyellow;
 }

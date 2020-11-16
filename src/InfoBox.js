@@ -10,7 +10,7 @@ function InfoBox({ title, cases, isRed, active, total, ...props }) {
       }`}
       onClick={props.onClick}
     >
-      <CardContent>
+      <CardContent className="infoBox__content">
         <Typography className="infoBox__title" color="textSecondary">
           {title}
         </Typography>

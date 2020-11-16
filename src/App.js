@@ -13,6 +13,8 @@ import "firebase/analytics";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import Container from "@material-ui/core/Container";
+import covid_svg from "./covid-svg.svg";
+import Footer from "./Footer.js";
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -93,75 +95,68 @@ function App() {
     getCountriesData();
   }, []);
   return (
-    <Container>
-      <div className="heading">
-        <h1>C </h1>
-        <img
-          className="covid__logo"
-          src="https://img.icons8.com/doodle/48/000000/coronavirus.png"
-          alt="O"
-        />
-        <h1> VID-19 METER</h1>
-      </div>
-      <FormControl className="app__dropdown">
-        <Autocomplete
-          style={{ width: "300px" }}
-          onChange={onCountryChange}
-          options={countries}
-          getOptionLabel={(country) => country.name}
-          renderInput={(params) => (
-            <TextField {...params} label="Search Country" variant="outlined" />
-          )}
-        />
-      </FormControl>
+    <>
+      <Container maxWidth="lg">
+        <div className="heading">
+          <img className="logo__image" src={covid_svg} alt="O" />
+        </div>
+        <FormControl className="app__dropdown" fullWidth={true}>
+          <Autocomplete
+            onChange={onCountryChange}
+            options={countries}
+            getOptionLabel={(country) => country.name}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Search Country"
+                variant="outlined"
+              />
+            )}
+          />
+        </FormControl>
 
-      <div className="app__stats">
-        <InfoBox
-          isRed
-          active={casesType === "cases"}
-          onClick={(e) => setCasesType("cases")}
-          title="Coranavirus Cases"
-          cases={prettyPrintStat(countryInfo.todayCases)}
-          total={countryInfo.cases}
-        />
-        <InfoBox
-          active={casesType === "recovered"}
-          onClick={(e) => setCasesType("recovered")}
-          title="Recovered"
-          cases={prettyPrintStat(countryInfo.todayRecovered)}
-          total={countryInfo.recovered}
-        />
-        <InfoBox
-          isRed
-          active={casesType === "deaths"}
-          onClick={(e) => setCasesType("deaths")}
-          title="Deaths"
-          cases={prettyPrintStat(countryInfo.todayDeaths)}
-          total={countryInfo.deaths}
-        />
-      </div>
+        <div className="app__stats">
+          <InfoBox
+            isRed
+            active={casesType === "cases"}
+            onClick={(e) => setCasesType("cases")}
+            title="Coranavirus Cases"
+            cases={prettyPrintStat(countryInfo.todayCases)}
+            total={countryInfo.cases}
+          />
+          <InfoBox
+            active={casesType === "recovered"}
+            onClick={(e) => setCasesType("recovered")}
+            title="Recovered"
+            cases={prettyPrintStat(countryInfo.todayRecovered)}
+            total={countryInfo.recovered}
+          />
+          <InfoBox
+            isRed
+            active={casesType === "deaths"}
+            onClick={(e) => setCasesType("deaths")}
+            title="Deaths"
+            cases={prettyPrintStat(countryInfo.todayDeaths)}
+            total={countryInfo.deaths}
+          />
+        </div>
 
-      <Card>
-        <LineGraph
-          country={currentCountry}
-          className="app__graph"
+        <Card className="app__graph">
+          <LineGraph country={currentCountry} casesType={casesType} />
+        </Card>
+
+        <Map
+          className="app__map"
           casesType={casesType}
+          countries={mapCountries}
+          center={mapCenter}
+          zoom={mapZoom}
         />
-      </Card>
 
-      <Map
-        casesType={casesType}
-        countries={mapCountries}
-        center={mapCenter}
-        zoom={mapZoom}
-      />
-
-      <div className="app__right">
-        <CardContent>
-          <Table countries={tableData} />
-        </CardContent>
-      </div>
-    </Container>
+        <Table countries={tableData} />
+      </Container>
+      <Footer />
+    </>
   );
 }
 
