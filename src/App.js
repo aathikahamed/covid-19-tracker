@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import { FormControl, Card, CardContent } from "@material-ui/core";
+import { FormControl, Card } from "@material-ui/core";
 import InfoBox from "./InfoBox";
 import Map from "./Map";
 import Table from "./Table";
