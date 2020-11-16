@@ -12,15 +12,17 @@ import firebase from "firebase/app";
 import "firebase/analytics";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import Container from "@material-ui/core/Container";
 
 function App() {
   const [countries, setCountries] = useState([]);
   const [countryInfo, setCountryInfo] = useState({});
   const [tableData, setTableData] = useState([]);
-  const [mapCenter, setMapCenter] = useState({ lat: 20.80746, lng: 20.4796 });
-  const [mapZoom, setMapZoom] = useState(2);
+  const [mapCenter, setMapCenter] = useState({ lat: 20.80746, lng: -10.4796 });
+  const [mapZoom, setMapZoom] = useState(3);
   const [mapCountries, setMapCountries] = useState([]);
   const [casesType, setCasesType] = useState("cases");
+  const [currentCountry, setCurrentCountry] = useState("all");
 
   useEffect(() => {
     fetchWorldWideData();
@@ -55,6 +57,7 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         try {
+          setCurrentCountry(data.country);
           setCountryInfo(data);
           setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
           setMapZoom(4);
@@ -68,7 +71,8 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         setCountryInfo(data);
-        setMapCenter({ lat: 20.80746, lng: 20.4796 });
+        setMapCenter({ lat: 20.80746, lng: -10.4796 });
+        setMapZoom(3);
       });
   };
 
@@ -89,69 +93,75 @@ function App() {
     getCountriesData();
   }, []);
   return (
-    <div className="app">
-      <div className="app__left">
-        <div className="app__header">
-          <h1>COVID-19 TRACKER</h1>
-          <FormControl className="app__dropdown">
-            <Autocomplete
-              onChange={onCountryChange}
-              options={countries}
-              getOptionLabel={(country) => country.name}
-              style={{ width: 300 }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Search Country"
-                  variant="outlined"
-                />
-              )}
-            />
-          </FormControl>
-        </div>
+    <Container>
+      <div className="heading">
+        <h1>C </h1>
+        <img
+          className="covid__logo"
+          src="https://img.icons8.com/doodle/48/000000/coronavirus.png"
+          alt="O"
+        />
+        <h1> VID-19 METER</h1>
+      </div>
+      <FormControl className="app__dropdown">
+        <Autocomplete
+          style={{ width: "300px" }}
+          onChange={onCountryChange}
+          options={countries}
+          getOptionLabel={(country) => country.name}
+          renderInput={(params) => (
+            <TextField {...params} label="Search Country" variant="outlined" />
+          )}
+        />
+      </FormControl>
 
-        <div className="app__stats">
-          <InfoBox
-            isRed
-            active={casesType === "cases"}
-            onClick={(e) => setCasesType("cases")}
-            title="Coranavirus Cases"
-            cases={prettyPrintStat(countryInfo.todayCases)}
-            total={countryInfo.cases}
-          />
-          <InfoBox
-            active={casesType === "recovered"}
-            onClick={(e) => setCasesType("recovered")}
-            title="Recovered"
-            cases={prettyPrintStat(countryInfo.todayRecovered)}
-            total={countryInfo.recovered}
-          />
-          <InfoBox
-            isRed
-            active={casesType === "deaths"}
-            onClick={(e) => setCasesType("deaths")}
-            title="Deaths"
-            cases={prettyPrintStat(countryInfo.todayDeaths)}
-            total={countryInfo.deaths}
-          />
-        </div>
-
-        <Map
-          casesType={casesType}
-          countries={mapCountries}
-          center={mapCenter}
-          zoom={mapZoom}
+      <div className="app__stats">
+        <InfoBox
+          isRed
+          active={casesType === "cases"}
+          onClick={(e) => setCasesType("cases")}
+          title="Coranavirus Cases"
+          cases={prettyPrintStat(countryInfo.todayCases)}
+          total={countryInfo.cases}
+        />
+        <InfoBox
+          active={casesType === "recovered"}
+          onClick={(e) => setCasesType("recovered")}
+          title="Recovered"
+          cases={prettyPrintStat(countryInfo.todayRecovered)}
+          total={countryInfo.recovered}
+        />
+        <InfoBox
+          isRed
+          active={casesType === "deaths"}
+          onClick={(e) => setCasesType("deaths")}
+          title="Deaths"
+          cases={prettyPrintStat(countryInfo.todayDeaths)}
+          total={countryInfo.deaths}
         />
       </div>
-      <Card className="app__right">
-        <CardContent>
-          <h3>Total Cases by Country</h3>
-          <Table countries={tableData} />
-          <h3 className="heading">Worldwide Covid-19 Cases</h3>
-          <LineGraph className="app__graph" casesType={casesType} />
-        </CardContent>
+
+      <Card>
+        <LineGraph
+          country={currentCountry}
+          className="app__graph"
+          casesType={casesType}
+        />
       </Card>
-    </div>
+
+      <Map
+        casesType={casesType}
+        countries={mapCountries}
+        center={mapCenter}
+        zoom={mapZoom}
+      />
+
+      <div className="app__right">
+        <CardContent>
+          <Table countries={tableData} />
+        </CardContent>
+      </div>
+    </Container>
   );
 }
 

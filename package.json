@@ -12,6 +12,7 @@
     "chart.js": "^2.9.4",
     "firebase": "^8.0.2",
     "leaflet": "^1.7.1",
+    "material-table": "^1.69.1",
     "numeral": "^2.0.6",
     "react": "^16.13.1",
     "react-chartjs-2": "^2.9.0",

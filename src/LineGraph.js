@@ -3,9 +3,6 @@ import { Line } from "react-chartjs-2";
 import numeral from "numeral";
 
 const options = {
-  legend: {
-    display: false,
-  },
   elements: {
     point: {
       radius: 0,
@@ -62,33 +59,37 @@ const buildChartData = (data, casesType) => {
   return chartData;
 };
 
-function LineGraph({ casesType, ...props }) {
-  const [data, setData] = useState({});
-  const [colorOfGraph, setColorOfGraph] = useState("rgba(204, 16, 52, 0.5)");
+function LineGraph({ casesType, country = "all", ...props }) {
+  const [graphData, setGraphData] = useState({});
+  const [colorOfGraph, setColorOfGraph] = useState("rgba(204, 16, 52, 0.3)");
   const [borderColorOfGraph, setBorderColorOfGraph] = useState("#CC1034");
 
   useEffect(() => {
     const fetchData = async () => {
-      await fetch("https://disease.sh/v3/covid-19/historical/all?lastdays=300")
+      await fetch(
+        `https://disease.sh/v3/covid-19/historical/${country}?lastdays=300`
+      )
         .then((response) => {
           return response.json();
         })
         .then((data) => {
-          let chartData = buildChartData(data, casesType);
-          setData(chartData);
+          let datas = data.timeline ? data.timeline : data;
+          let dataToCreateChart = buildChartData(datas, casesType);
+
+          setGraphData(dataToCreateChart);
           switch (casesType) {
             case "cases":
-              setColorOfGraph("rgba(204, 16, 52, 0.5)");
+              setColorOfGraph("rgba(204, 16, 52, 0.3)");
               setBorderColorOfGraph("#CC1034");
               break;
 
             case "recovered":
-              setColorOfGraph("rgba(125, 215, 29, 0.5)");
+              setColorOfGraph("rgba(125, 215, 29, 0.3)");
               setBorderColorOfGraph("#7dd71d");
               break;
 
             case "deaths":
-              setColorOfGraph("rgba(251, 68, 67, 0.5)");
+              setColorOfGraph("rgba(251, 68, 67, 0.3)");
               setBorderColorOfGraph("#fb4443");
               break;
 
@@ -99,20 +100,26 @@ function LineGraph({ casesType, ...props }) {
     };
 
     fetchData();
-  }, [casesType]);
+  }, [casesType, country]);
+
+  let graphLabel = `${casesType} in ${country}`.toUpperCase();
+  if (country === "all") {
+    graphLabel = `${casesType} in WORLDWIDE`.toUpperCase();
+  }
 
   return (
     <div className={props.className}>
-      {data?.length > 0 && (
+      {graphData.length > 0 && (
         <Line
-          height={200}
+          height={350}
           data={{
             datasets: [
               {
+                label: graphLabel,
                 backgroundColor: colorOfGraph,
                 borderColor: borderColorOfGraph,
-                data: data,
-                borderWidth: 2.1,
+                data: graphData,
+                borderWidth: 2,
               },
             ],
           }}
