@@ -72,3 +72,7 @@ body {
 .MuiOutlinedInput-root {
   border-radius: 15px !important;
 }
+
+.MuiTypography-h6 {
+  font-size: 1.5em !important;
+}
