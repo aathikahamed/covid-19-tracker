@@ -10,26 +10,34 @@ const Table = ({ countries }) => {
     {
       title: "Total Cases",
       field: "cases",
-    },
-    {
-      title: "Total Recovered",
-      field: "recovered",
-    },
-    {
-      title: "Total Deaths",
-      field: "deaths",
+      render: (country) => country.cases.toLocaleString(),
     },
     {
       title: "Today Cases",
       field: "todayCases",
+      render: (country) => country.todayCases.toLocaleString(),
     },
+    {
+      title: "Total Recovered",
+      field: "recovered",
+      render: (country) => country.recovered.toLocaleString(),
+    },
+
     {
       title: "Today Recovered",
       field: "todayRecovered",
+      render: (country) => country.todayRecovered.toLocaleString(),
     },
+    {
+      title: "Total Deaths",
+      field: "deaths",
+      render: (country) => country.deaths.toLocaleString(),
+    },
+
     {
       title: "Today Deaths",
       field: "todayDeaths",
+      render: (country) => country.todayDeaths.toLocaleString(),
     },
   ];
   return (
