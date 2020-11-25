@@ -1,6 +1,5 @@
 import { Circle, Popup } from "react-leaflet";
 import React from "react";
-import numeral from "numeral";
 
 const casesTypeColors = {
   cases: {
@@ -14,6 +13,14 @@ const casesTypeColors = {
   deaths: {
     hex: "#fb4443",
     multiplier: 2000,
+  },
+  active: {
+    hex: "#fb4443",
+    multiplier: 1000,
+  },
+  tests: {
+    hex: "#00c700",
+    multiplier: 550,
   },
 };
 
@@ -46,18 +53,19 @@ export const showDataOnMap = (data, casesType = "cases") =>
           ></div>
           <div className="info-country">{country.country}</div>
           <div className="info-cases">
-            Cases: {numeral(country.cases).format("0,0")}
+            Cases: {country.cases.toLocaleString()}
           </div>
           <div className="info-recovered">
-            Recovered: {numeral(country.recovered).format("0,0")}
+            Recovered: {country.recovered.toLocaleString()}
           </div>
           <div className="info-deaths">
-            Deaths: {numeral(country.deaths).format("0,0")}
+            Deaths: {country.deaths.toLocaleString()}
           </div>
         </div>
       </Popup>
     </Circle>
   ));
 
-export const prettyPrintStat = (stat) =>
-  stat ? `+${numeral(stat).format("0.0a")}` : 0;
+export const prettyPrintStat = (stat) => {
+  return stat ? stat.toLocaleString() : 0;
+};

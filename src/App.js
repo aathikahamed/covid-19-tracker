@@ -118,33 +118,49 @@ function App() {
         <div className="app__stats">
           <InfoBox
             isRed
-            active={casesType === "cases"}
-            onClick={(e) => setCasesType("cases")}
-            title="Confirmed Cases"
+            isActive={casesType === "cases"}
+            onClick={() => setCasesType("cases")}
+            title="Cases"
             cases={prettyPrintStat(countryInfo.todayCases)}
             total={countryInfo.cases}
           />
           <InfoBox
-            active={casesType === "recovered"}
-            onClick={(e) => setCasesType("recovered")}
+            isActive={casesType === "recovered"}
+            onClick={() => setCasesType("recovered")}
             title="Recovered"
             cases={prettyPrintStat(countryInfo.todayRecovered)}
             total={countryInfo.recovered}
           />
           <InfoBox
             isRed
-            active={casesType === "deaths"}
-            onClick={(e) => setCasesType("deaths")}
+            isActive={casesType === "deaths"}
+            onClick={() => setCasesType("deaths")}
             title="Deaths"
             cases={prettyPrintStat(countryInfo.todayDeaths)}
             total={countryInfo.deaths}
           />
+          <InfoBox
+            isRed
+            isActive={casesType === "active"}
+            onClick={() => setCasesType("active")}
+            title="Active Cases"
+            cases={prettyPrintStat(countryInfo.active)}
+          />
+          <InfoBox
+            isActive={casesType === "tests"}
+            onClick={() => setCasesType("tests")}
+            title="Tests Taken"
+            cases={prettyPrintStat(countryInfo.tests)}
+          />
         </div>
 
-        <Card className="app__graph">
-          <LineGraph country={currentCountry} casesType={casesType} />
-        </Card>
-
+        {(casesType === "cases" ||
+          casesType === "deaths" ||
+          casesType === "recovered") && (
+          <Card className="app__graph">
+            <LineGraph country={currentCountry} casesType={casesType} />
+          </Card>
+        )}
         <Map
           className="app__map"
           casesType={casesType}

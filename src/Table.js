@@ -2,10 +2,24 @@ import React from "react";
 import MaterialTable from "material-table";
 
 const Table = ({ countries }) => {
+  const countryNameAndFlagStyles = {
+    display: "flex",
+    alignItems: "center",
+    columnGap: "5px",
+  };
   const columns = [
     {
       title: "Country",
       field: "country",
+      render: (country) => {
+        const div = (
+          <div style={countryNameAndFlagStyles}>
+            <img src={country.countryInfo.flag} alt="Flag" height="15px" />
+            <p>{country.country}</p>
+          </div>
+        );
+        return div;
+      },
     },
     {
       title: "Total Cases",
@@ -55,6 +69,7 @@ const Table = ({ countries }) => {
           backgroundColor: "#eee",
           fontWeight: "bold",
         },
+        rowStyle: { backgroundColor: "rgb(254,254,254)" },
       }}
     />
   );
