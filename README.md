@@ -2,7 +2,7 @@
 
 An Interactive Open Source Covid 19 Tracker with voice assistance
 
-### Functions of this app
+### Functionalities of this app
 
 - Get covid-19 cases, recovered, deaths and more info from all around the world
 - Displays the cases, recovered and deaths of each country in a map

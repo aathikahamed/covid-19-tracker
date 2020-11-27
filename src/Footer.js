@@ -18,14 +18,14 @@ const Footer = () => {
         by Aathik Ahamed
       </h3>
       <div>Aathik Ahamed &#169; 2020</div>
+
       <div>
-        Source{" "}
         <a
-          href="https://github.com/disease-sh/API"
+          href="https://github.com/aathikahamed/covid-19-tracker/blob/master/README.md#functions-of-this-app"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Disease.sh
+          About this App
         </a>
       </div>
     </div>
