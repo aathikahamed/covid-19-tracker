@@ -12,6 +12,6 @@ An Interactive Open Source Covid 19 Tracker with voice assistance
 
 If you would like to contribute to this project check out the [Contributing Guide](https://github.com/aathikahamed/covid-19-tracker/blob/master/contributing.md)
 
-[Covid 19 Data](disease.sh)
+[Covid 19 Data](https://disease.sh/)
 
-[Icons](icons8.com)
+[Icons](https://icons8.com/)
