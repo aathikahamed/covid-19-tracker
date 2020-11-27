@@ -15,6 +15,12 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import Container from "@material-ui/core/Container";
 import covid_svg from "./covid-svg.svg";
 import Footer from "./Footer.js";
+import recoveredImage from "./images/recovered.png";
+import casesImage from "./images/cases.png";
+import criticalImage from "./images/critical.png";
+import deathsImage from "./images/deaths.png";
+import feverImage from "./images/fever.png";
+import testImage from "./images/test.png";
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -123,6 +129,7 @@ function App() {
             title="Cases"
             cases={prettyPrintStat(countryInfo.todayCases)}
             total={countryInfo.cases}
+            icon={casesImage}
           />
           <InfoBox
             isActive={casesType === "recovered"}
@@ -130,6 +137,7 @@ function App() {
             title="Recovered"
             cases={prettyPrintStat(countryInfo.todayRecovered)}
             total={countryInfo.recovered}
+            icon={recoveredImage}
           />
           <InfoBox
             isRed
@@ -138,19 +146,31 @@ function App() {
             title="Deaths"
             cases={prettyPrintStat(countryInfo.todayDeaths)}
             total={countryInfo.deaths}
+            icon={deathsImage}
           />
+
           <InfoBox
             isRed
             isActive={casesType === "active"}
             onClick={() => setCasesType("active")}
             title="Active Cases"
             cases={prettyPrintStat(countryInfo.active)}
+            icon={feverImage}
+          />
+          <InfoBox
+            isRed
+            isActive={casesType === "critical"}
+            onClick={() => setCasesType("critical")}
+            title="Critical cases"
+            cases={prettyPrintStat(countryInfo.critical)}
+            icon={criticalImage}
           />
           <InfoBox
             isActive={casesType === "tests"}
             onClick={() => setCasesType("tests")}
             title="Tests Taken"
             cases={prettyPrintStat(countryInfo.tests)}
+            icon={testImage}
           />
         </div>
 

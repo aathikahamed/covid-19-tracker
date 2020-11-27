@@ -22,6 +22,10 @@ const casesTypeColors = {
     hex: "#00c700",
     multiplier: 550,
   },
+  critical: {
+    hex: "#fb4443",
+    multiplier: 3000,
+  },
 };
 
 export const sortData = (data) => {
