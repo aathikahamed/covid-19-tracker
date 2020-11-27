@@ -44,14 +44,14 @@ function App() {
 
   useEffect(() => {
     const firebaseConfig = {
-      apiKey: "AIzaSyAHDDisSLTn69xriB9Rbrt_rBuSfPPHflM",
-      authDomain: "aathik-covid-tracker.firebaseapp.com",
-      databaseURL: "https://aathik-covid-tracker.firebaseio.com",
-      projectId: "aathik-covid-tracker",
-      storageBucket: "aathik-covid-tracker.appspot.com",
-      messagingSenderId: "100244378656",
-      appId: "1:100244378656:web:1fe01045dbdc71c6579845",
-      measurementId: "G-0RJTJ6RQQM",
+      apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+      authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+      databaseURL: process.env.REACT_APP_DATABASE_URL,
+      projectId: process.env.REACT_APP_PROJECT_ID,
+      storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+      messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+      appId: process.env.REACT_APP_APP_ID,
+      measurementId: process.env.REACT_APP_MEASUREMENT_ID,
     };
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
