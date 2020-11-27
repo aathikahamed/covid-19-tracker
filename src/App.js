@@ -37,7 +37,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log(process.env);
     alanBtn({
       key: process.env.REACT_APP_ALAN_KEY,
     });
