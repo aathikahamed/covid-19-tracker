@@ -37,9 +37,9 @@ function App() {
   }, []);
 
   useEffect(() => {
+    console.log(process.env);
     alanBtn({
-      key:
-        "fc0b9fc7a78dc8355d7d8c64f238b2882e956eca572e1d8b807a3e2338fdd0dc/stage",
+      key: process.env.REACT_APP_ALAN_KEY,
     });
   }, []);
 
