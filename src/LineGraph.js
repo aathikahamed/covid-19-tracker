@@ -47,7 +47,7 @@ const buildChartData = (data, casesType) => {
   let chartData = [];
   let lastDataPoint = 0;
   for (let date in data.cases) {
-    if (data[casesType][date] > 0 && data[casesType][date] < 9999999) {
+    if (data[casesType][date] < 9999999) {
       if (lastDataPoint) {
         let newDataPoint = {
           x: date,
