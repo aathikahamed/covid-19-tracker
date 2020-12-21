@@ -45,14 +45,16 @@ const options = {
 
 const buildChartData = (data, casesType) => {
   let chartData = [];
-  let lastDataPoint;
+  let lastDataPoint = 0;
   for (let date in data.cases) {
-    if (lastDataPoint) {
-      let newDataPoint = {
-        x: date,
-        y: data[casesType][date] - lastDataPoint,
-      };
-      chartData.push(newDataPoint);
+    if (data[casesType][date] > 0 && data[casesType][date] < 9999999) {
+      if (lastDataPoint) {
+        let newDataPoint = {
+          x: date,
+          y: data[casesType][date] - lastDataPoint,
+        };
+        chartData.push(newDataPoint);
+      }
     }
     lastDataPoint = data[casesType][date];
   }
