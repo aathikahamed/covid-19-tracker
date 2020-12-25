@@ -21,6 +21,7 @@ import criticalImage from "./images/critical.png";
 import deathsImage from "./images/deaths.png";
 import feverImage from "./images/fever.png";
 import testImage from "./images/test.png";
+import Cookies from "./Cookies";
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -190,6 +191,8 @@ function App() {
 
         <Table countries={tableData} />
       </Container>
+      <Cookies />
+
       <Footer />
     </>
   );
