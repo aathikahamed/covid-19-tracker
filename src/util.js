@@ -4,23 +4,23 @@ import React from "react";
 const casesTypeColors = {
   cases: {
     hex: "#CC1034",
-    multiplier: 800,
+    multiplier: 100,
   },
   recovered: {
     hex: "#7dd71d",
-    multiplier: 900,
+    multiplier: 100,
   },
   deaths: {
     hex: "#fb4443",
-    multiplier: 2000,
+    multiplier: 500,
   },
   active: {
     hex: "#fb4443",
-    multiplier: 1000,
+    multiplier: 100,
   },
   tests: {
     hex: "#00c700",
-    multiplier: 550,
+    multiplier: 20,
   },
   critical: {
     hex: "#fb4443",
@@ -42,8 +42,7 @@ export const showDataOnMap = (data, casesType = "cases") =>
       color={casesTypeColors[casesType].hex}
       fillColor={casesTypeColors[casesType].hex}
       radius={
-        Math.sqrt(country[casesType]) *
-        (casesTypeColors[casesType].multiplier - 500)
+        Math.sqrt(country[casesType]) * casesTypeColors[casesType].multiplier
       }
     >
       <Popup>
